@@ -3,7 +3,7 @@ Advent of Code 2016 sources
 
 | Day | Name                                                       | Time        |
 |:---:|:-----------------------------------------------------------|-------------|
-| 01  | [No Time for a Taxicab](./Days/Day01/Day01.cc)             | 0.00189913s |
+| 01  | [No Time for a Taxicab](./Days/Day01/day01.cc)             | 0.00189913s |
 | 02  |                                                            |             |
 | 03  |                                                            |             |
 | 04  |                                                            |             |
