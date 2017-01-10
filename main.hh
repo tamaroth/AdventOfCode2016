@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Days/Day01/day01.hh"
+#include "Days/Day01/Day01.hh"
 
-Day01 day01;
+CDay01 day01;

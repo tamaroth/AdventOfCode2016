@@ -1,15 +1,16 @@
-#include "day01.hh"
+#include "Day01.hh"
 
-DAYS Day01::getDay() const
+DAYS CDay01::getDay() const
 {
     return DAYS::kDay01;
 }
 
 // during initialize split the input string into an array.
-void Day01::initialize(...)
+void CDay01::initialize(...)
 {
     m_timer.probeTime();
-    std::string input{ "R3, L5, R2, L1, L2, R5, L2, R2, L2, L2, L1, R2, L2, R4, R4, R1, L2, L3, R3, L1, R2, L2, L4, R4, R5, L3, R3, L3, L3, R4, R5, L3, R3, L5, L1, L2, R2, L1, R3, R1, L1, R187, L1, R2, R47, L5, L1, L2, R4, R3, L3, R3, R4, R1, R3, L1, L4, L1, R2, L1, R4, R5, L1, R77, L5, L4, R3, L2, R4, R5, R5, L2, L2, R2, R5, L2, R194, R5, L2, R4, L5, L4, L2, R5, L3, L2, L5, R5, R2, L3, R3, R1, L4, R2, L1, R5, L1, R5, L1, L1, R3, L1, R5, R2, R5, R5, L4, L5, L5, L5, R3, L2, L5, L4, R3, R1, R1, R4, L2, L4, R5, R5, R4, L2, L2, R5, R5, L5, L2, R4, R4, L4, R1, L3, R1, L1, L1, L1, L4, R5, R4, L4, L4, R5, R3, L2, L2, R3, R1, R4, L3, R1, L4, R3, L3, L2, R2, R2, R2, L1, L4, R3, R2, R2, L3, R2, L3, L2, R4, L2, R3, L4, R5, R4, R1, R5, R3" };
+    //std::string input{ "R3, L5, R2, L1, L2, R5, L2, R2, L2, L2, L1, R2, L2, R4, R4, R1, L2, L3, R3, L1, R2, L2, L4, R4, R5, L3, R3, L3, L3, R4, R5, L3, R3, L5, L1, L2, R2, L1, R3, R1, L1, R187, L1, R2, R47, L5, L1, L2, R4, R3, L3, R3, R4, R1, R3, L1, L4, L1, R2, L1, R4, R5, L1, R77, L5, L4, R3, L2, R4, R5, R5, L2, L2, R2, R5, L2, R194, R5, L2, R4, L5, L4, L2, R5, L3, L2, L5, R5, R2, L3, R3, R1, L4, R2, L1, R5, L1, R5, L1, L1, R3, L1, R5, R2, R5, R5, L4, L5, L5, L5, R3, L2, L5, L4, R3, R1, R1, R4, L2, L4, R5, R5, R4, L2, L2, R5, R5, L5, L2, R4, R4, L4, R1, L3, R1, L1, L1, L1, L4, R5, R4, L4, L4, R5, R3, L2, L2, R3, R1, R4, L3, R1, L4, R3, L3, L2, R2, R2, R2, L1, L4, R3, R2, R2, L3, R2, L3, L2, R4, L2, R3, L4, R5, R4, R1, R5, R3" };
+    const std::string input{ "R8, R4, R4, R8" };
     const std::regex separator(", ");
     std::sregex_token_iterator token_iterator(input.begin(), input.end(), separator, -1), end_seq;
 
@@ -28,41 +29,90 @@ void Day01::initialize(...)
     }
 }
 
-void Day01::part1() const
+void CDay01::part1() const
 {
-    int numL{}, numR{};
-    int distance{};
+    int direction{};
+    int Px{}, Py{};
     for (const auto& token : m_tokens)
     {
-        int localDistance{ token.distance };
-
         if (token.direction == DIRECTON::kLeft)
         {
-            // not very efficient, but the easiest way possible
-            if (numL && numL % 2 == 0)
-                localDistance = -localDistance;
-            numL++;
+            direction = (direction + 3) % 4;
         }
         else
         {
-            if (numR && numR % 2 == 0)
-                localDistance = -localDistance;
-            numR++;
+            direction = (direction + 1) % 4;
         }
 
-        distance += localDistance;
+        switch (direction)
+        {
+        case 0:
+            Py += token.distance;
+            break;
+        case 1:
+            Px += token.distance;
+            break;
+        case 2:
+            Py -= token.distance;
+            break;
+        case 3:
+            Px -= token.distance;
+        default:
+            break;
+        }
     }
-
-    std::cout << "Part 1: " << distance << " in ";
+    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
     m_timer.printElapsed();
 }
 
-void Day01::run(...)
+void CDay01::part2() const
+{
+    std::map<std::pair<int, int>, int> crossings{};
+    int direction{};
+    int Px{}, Py{};
+    for (const auto& token : m_tokens)
+    {
+        if (token.direction == DIRECTON::kLeft)
+        {
+            direction = (direction + 3) % 4;
+        }
+        else
+        {
+            direction = (direction + 1) % 4;
+        }
+
+        switch (direction)
+        {
+        case 0:
+            Py += token.distance;
+            break;
+        case 1:
+            Px += token.distance;
+            break;
+        case 2:
+            Py -= token.distance;
+            break;
+        case 3:
+            Px -= token.distance;
+        default:
+            break;
+        }
+        if (crossings.find(std::make_pair(Px, Py)) == crossings.end())
+        {
+            break;
+        }
+        crossings[std::make_pair(Px, Py)] = 1;
+    }
+    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+    m_timer.printElapsed();
+}
+
+void CDay01::run(...)
 {
     part1();
+    part2();
 }
 
-void Day01::finalize(...)
+void CDay01::finalize(...)
 {
-    m_timer.printElapsed();
 }

@@ -125,10 +125,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="day01.cc" />
+    <ClCompile Include="Day01.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="day01.hh" />
+    <ClInclude Include="Day01.hh" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Tools\Tools.vcxproj">

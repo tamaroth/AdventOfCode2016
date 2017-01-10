@@ -1,15 +1,17 @@
 #pragma once
 
-#include "../../Common/DayBase/base.hh"
+#include <iostream>
 #include <string>
 #include <regex>
 #include <vector>
+#include <map>
+#include "../../Common/DayBase/base.hh"
 
-class Day01 : public DayBase
+class CDay01 : public DayBase
 {
 public:
-    Day01() {};
-    ~Day01() {};
+    CDay01() {};
+    ~CDay01() {};
 
     DAYS getDay() const;
     void initialize(...);
@@ -17,6 +19,8 @@ public:
     void finalize(...);
 private:
     void part1() const;
+    void part2() const;
+
     enum class DIRECTON
     {
         kLeft,
