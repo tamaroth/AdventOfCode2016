@@ -59,7 +59,7 @@ void CDay01::part1() const
             break;
         }
     }
-    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << std::endl;
 }
 
 void CDay01::part2() const
@@ -87,7 +87,7 @@ void CDay01::part2() const
                 if (crossings.find(std::make_pair(Px, Py + i)) != crossings.end())
                 {
                     Py += i;
-                    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+                    std::cout << "Part 2: " << abs(-Px) + abs(-Py) << std::endl;
                     return;
                 }
                 crossings[std::make_pair(Px, Py + i)] = 1;
@@ -102,7 +102,7 @@ void CDay01::part2() const
                 if (crossings.find(std::make_pair(Px + i, Py)) != crossings.end())
                 {
                     Px += i;
-                    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+                    std::cout << "Part 2: " << abs(-Px) + abs(-Py) << std::endl;
                     return;
                 }
                 crossings[std::make_pair(Px + i, Py)] = 1;
@@ -117,7 +117,7 @@ void CDay01::part2() const
                 if (crossings.find(std::make_pair(Px, Py - i)) != crossings.end())
                 {
                     Py -= i;
-                    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+                    std::cout << "Part 2: " << abs(-Px) + abs(-Py) << std::endl;
                     return;
                 }
                 crossings[std::make_pair(Px, Py - i)] = 1;
@@ -132,7 +132,7 @@ void CDay01::part2() const
                 if (crossings.find(std::make_pair(Px - i, Py)) != crossings.end())
                 {
                     Py -= i;
-                    std::cout << "Part 1: " << abs(-Px) + abs(-Py) << " in ";
+                    std::cout << "Part 2: " << abs(-Px) + abs(-Py) << std::endl;
                     return;
                 }
                 crossings[std::make_pair(Px - i, Py)] = 1;
