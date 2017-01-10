@@ -10,11 +10,11 @@ namespace Tools
 {
     using TimePoint = std::chrono::high_resolution_clock::time_point;
 
-    class Timer
+    class CTimer
     {
     public:
-        Timer();
-        ~Timer();
+        CTimer();
+        ~CTimer();
 
         void probeTime();
         void printElapsed() const;

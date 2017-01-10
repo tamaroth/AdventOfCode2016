@@ -13,10 +13,12 @@ int main()
     {
         if (day->getDay() == active)
         {
+            Tools::CTimer timer{};
             day->initialize();
             day->run();
             day->finalize();
+            std::cout << "Done in: ";
+            timer.printElapsed();
         }
     }
-    std::cout << "Finished.";
 }

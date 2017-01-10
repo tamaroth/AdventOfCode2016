@@ -34,5 +34,4 @@ private:
     };
 private:
     std::vector<TOKENS>     m_tokens;
-    Tools::Timer            m_timer;
 };
